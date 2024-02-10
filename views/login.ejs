@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/stylesheets/login.css">
+</head>
+<body>
+  <main>
+    <header>
+        <div class="bg">
+          <img src="../images/insta-bg.jpg" alt="">
+        </div>
+      <div id="login-page">
+        <div id="login-box">
+          <h2>Login to see more</h2>
+          <div id="form-cntnr">
+            <form action="/login" method="post" id="passwordForm">
+              <div>
+                <label for="username"><i class="ri-input-field"></i></label>
+                <input type="text" placeholder="Enter a Username" name="username">
+              </div>
+              <div>
+                <label for="password"><i class="ri-lock-password-fill"></i></label>
+                <input type="password" id="password" placeholder="Enter your password" name="password" required>
+                <span class="password-toggle" onclick="togglePasswordVisibility('password')">
+                  <i id="close" class="ri-eye-close-fill"></i>
+                  <i id="open" class="ri-eye-fill"></i>
+                </span>
+              </div>
+              <div id="terms">
+                <p>People who use our service may have uploaded your contact information to Instagram. <a href="#">Learn More</a></p>
+                <p>By signing up, you agree to our Terms , Privacy Policy and Cookies Policy .</p>
+                <h5>New user's sign up here! <a href="/">sign up</a></h5>
+              </div>
+              <input id="submit-btn" type="submit" value="Login">
+            </form>
+          </div>
+        </div>
+      </div>
+    </header>
+  </main>
+  <script>
+    let a=()=>{
+      console.log("object")
+      var openEye = document.querySelector('#open')
+      openEye.style.visibility = "hidden"
+    }
+    a();
+    function togglePasswordVisibility(inputId) {
+    var eyeSpan = document.querySelector('.password-toggle')
+    var closeEye = document.querySelector('#close')
+    var openEye = document.querySelector('#open')
+    var passwordInput = document.getElementById(inputId);
+    passwordInput.type = (passwordInput.type === 'password') ?  'text' : 'password';
+    eyeSpan.addEventListener("click", ()=>{
+      if(passwordInput.type === 'text'){
+        closeEye.style.visibility = "hidden"
+        openEye.style.visibility = "visible"
+      }
+      else if(passwordInput.type == 'password'){
+        openEye.style.visibility = "hidden"
+        closeEye.style.visibility = "visible"
+      }
+    })
+  }
+  </script>
+</body>
+</html>

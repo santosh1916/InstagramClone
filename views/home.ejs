@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <div id="sidemenu">
+        <div class="part2">
+            <h1>logo</h1>
+            <a href="/home"><i class="ri-home-5-fill"></i><h4>Home</h4></a>
+            <a href="#"><i class="ri-search-line"></i><h4>Search</h4></a>
+            <a href="#"><i class="ri-file-paper-fill"></i><h4>Explore</h4></a>
+            <a href="#"><i class="ri-airplay-fill"></i><h4>Reels</h4></a>
+            <a href="#"><i class="ri-message-3-fill"></i><h4>Message</h4></a>
+            <a href="#"><i class="ri-notification-fill"></i><h4>Notification</h4></a>
+            <a href="/create"><i class="ri-add-box-fill"></i><h4>Create</h4></a>
+            <a href="/profile"><i class="ri-profile-fill"></i><h4>Profile</h4></a>
+        </div>
+        <div class="part3">
+            <h4>more</h4>
+        </div>
+    </div>
+    <main>
+        <div id="scroll-feed">
+            <div id="feed-page">
+                <div id="top-contnr">
+                   <div id="story-cntnr">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                          <div class="swiper-slide" id="story">
+                            <div class="dp">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile">
+                            </div>
+                            <h5>username</h5>
+                          </div>
+                          <div class="swiper-slide" id="story">
+                            <div class="dp">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile">
+                            </div>
+                            <h5>username</h5>
+                          </div>
+                          <div class="swiper-slide" id="story">
+                            <div class="dp">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile">
+                            </div>
+                            <h5>username</h5>
+                          </div>
+                          <div class="swiper-slide" id="story">
+                            <div class="dp">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile">
+                            </div>
+                            <h5>username</h5>
+                          </div>
+                          <div class="swiper-slide" id="story">
+                            <div class="dp">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile">
+                            </div>
+                            <h5>username</h5>
+                          </div>
+                          <div class="swiper-slide" id="story">
+                            <div class="dp">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile">
+                            </div>
+                            <h5>username</h5>
+                          </div>
+                          <div class="swiper-slide" id="story">
+                            <div class="dp">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile">
+                            </div>
+                            <h5>username</h5>
+                          </div>
+                          <div class="swiper-slide" id="story">
+                            <div class="dp">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile">
+                            </div>
+                            <h5>username</h5>
+                          </div>
+                          <div class="swiper-slide" id="story">
+                            <div class="dp">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile">
+                            </div>
+                            <h5>username</h5>
+                          </div>
+                          <div class="swiper-slide" id="story">
+                            <div class="dp">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile">
+                            </div>
+                            <h5>username</h5>
+                          </div>
+                          <div class="swiper-slide" id="story">
+                            <div class="dp">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile">
+                            </div>
+                            <h5>username</h5>
+                          </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                      </div>
+                   </div>
+                   <div id="profile">
+                    <div class="profile-pic">
+                        <img src="../images/uploads/profile/<%= myUserData.profileimage %>" alt="">
+                    </div> 
+                    <% if (myUserData) { %>
+                        <h2><%= myUserData.username %></h2>
+                   <% } %>
+                    <div class="btn">
+                        <a href="#"><i class="ri-chat-3-fill"></i></a>
+                        <a class="logout-btn" href="/logout"><i class="ri-logout-circle-r-line"></i></a>
+                    </div>
+                   </div>
+                </div>
+                <!-- repeatable feed here -->
+                <% allpost.reverse().forEach(elem => { %>
+                    <div id="feed">
+                        <div id="f-part1">
+                            <% if(elem.filename.endsWith("4")){ %>
+                                <video controls autoplay loop muted src="../images/uploads/posts/<%= elem.filename %>"></video>
+                           <% }else{ %>
+
+                            <img src="../images/uploads/posts/<%= elem.filename %>" alt="">
+                          <% } %>
+                            
+                        </div>
+                        <div id="f-part2-green">
+                            <div class="part2-detials">
+                                <div class="user-detials">
+                                    <div class="user-dp">
+                                        <img src="../images/uploads/profile/<%= elem.user.profileimage %>" alt="">
+                                    </div>
+                                    <div class="username">
+                                        <h2><%= elem.user.fullname %></h2>
+                                        <p> <%= elem.user.username %> </p>
+                                    </div>
+                                </div>
+                                <div id="cntnr">
+                                    <div class="details">
+                                        <h3><%= elem.caption %></h3>
+                                        <p><%= elem.description %></p>
+                                        <h5>0 likes</h5>
+                                            <div class="icons">
+                                                <a href="#"><i class="ri-heart-add-fill"></i></a>
+                                                <a href="#"><i class="ri-chat-heart-fill"></i></a>
+                                                <a href="#"><i class="ri-share-fill"></i></a>
+                                            </div>
+                                        </div>
+                                    <h3 class="comment">Comments</h3>
+                                    <form action="/addComment/posts/<%= elem._id %>" method="post" id="comment-here">
+                                        <label for="comment">Login username</label>
+                                        <input type="text" placeholder="comment here!" name="comment">
+                                        <button class="comment-btn" type="submit"><i class="ri-send-plane-fill"></i></button>
+                                    </form>
+                                    <% elem.comments.forEach(comment => { %>
+                                        <div class="comment-detial">
+                                        <h4><%= comment.user.username %></h4>
+                                        <h5><%= comment.text %></h5>
+                                    </div> 
+                                   <% }); %>
+                                    
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+              <%  }); %>
+                
+
+
+
+
+
+                <!-- <div id="feed">
+                    <div id="f-part1">
+                        <img src="https://media.istockphoto.com/id/1146517111/photo/taj-mahal-mausoleum-in-agra.jpg?s=612x612&w=0&k=20&c=vcIjhwUrNyjoKbGbAQ5sOcEzDUgOfCsm9ySmJ8gNeRk=" alt="">
+                        
+                    </div>
+                    <div id="f-part2-green">
+                        <div class="part2-detials">
+                            <div class="user-detials">
+                                <div class="user-dp">
+                                    <img src="" alt="">
+                                </div>
+                                <h2>@username</h2>
+                            </div>
+                            <div id="cntnr">
+                                <div class="details">
+                                    <h2>Title</h2>
+                                    <p>@content Description</p>
+                                    <h5>0 likes</h5>
+                                        <div class="icons">
+                                            <a href="#"><i class="ri-heart-add-fill"></i></a>
+                                            <a href="#"><i class="ri-chat-heart-fill"></i></a>
+                                            <a href="#"><i class="ri-share-fill"></i></a>
+                                        </div>
+                                    </div>
+                                <h3 class="comment">Comments</h3>
+                                <form action="/comment" id="comment-here">
+                                    <label for="comment">Login username</label>
+                                    <input type="text" placeholder="comment here!" name="comment">
+                                    <button class="comment-btn" type="submit"><i class="ri-send-plane-fill"></i></button>
+                                </form>
+                                <div class="comment-detial">
+                                    <h4>@cmment-username</h4>
+                                    <p>comment descipition</p>
+                                </div>
+                                <div class="comment-detial">
+                                    <h4>@cmment-username</h4>
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut vitae pariatur dolorem corrupti eum consectetur id libero expedita explicabo doloribus reiciendis quas, quae, similique ipsam tenetur, suscipit asperiores molestias non!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="../javascripts/home.js"></script>
+</body>
+</html>

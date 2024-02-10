@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/stylesheets/create.css">
+</head>
+<body>
+    <div id="sidemenu">
+        <div class="part1">
+          <div class="profile-pic">
+            <img src="../images/uploads/profile/<%= myUserData.profileimage %>" alt="">
+          </div>
+          <h2><%= myUserData.username %></h2>
+        </div>
+        <div class="part2">
+            <a href="/home"><i class="ri-home-5-fill"></i><h4>Home</h4></a>
+            <a href="#"><i class="ri-search-line"></i><h4>Search</h4></a>
+            <a href="#"><i class="ri-file-paper-fill"></i><h4>Explore</h4></a>
+            <a href="#"><i class="ri-airplay-fill"></i><h4>Reels</h4></a>
+            <a href="#"><i class="ri-message-3-fill"></i><h4>Message</h4></a>
+            <a href="#"><i class="ri-notification-fill"></i><h4>Notification</h4></a>
+            <a href="/create"><i class="ri-add-box-fill"></i><h4>Create</h4></a>
+            <a href="/profile"><i class="ri-profile-fill"></i><h4>Profile</h4></a>
+        </div>
+        <div class="part3">
+            <h4>more</h4>
+        </div>
+    </div>
+    <main>
+        <div id="scroll-feed">
+            <div id="feed-page">
+                <div id="top-contnr">
+                  <div class="btn">
+                    <a href="#"><i class="ri-chat-3-fill"></i></a>
+                    <a class="logout-btn" href="/logout"><i class="ri-logout-circle-r-line"></i></a>
+                  </div>
+                </div>
+                <!-- repeatable feed here -->
+                <div id="create-page">
+                  <form action="/create" method="post" enctype="multipart/form-data">
+                    <div class="container">
+                      <div class="media">
+                        <input type="file" name="fileInput" id="fileInput" onchange="previewFile()">
+                        <img class="default" src="../images/filebg.png" alt="pichla image of user">
+                        <img src="" alt="File Preview" id="imagePreview">
+                        <video autoplay loop src="" id="videoPreview"></video>
+                      </div>
+                      <div class="allbtn">
+                        <button type="button" id="removeButton" onclick="removeFile()">Remove</button>
+                        <button type="button" id="editButton">Edit</button>
+                        <button type="submit">Share</button>
+                      </div>
+                    </div>
+                    <div class="container">
+                      <h1>Create post</h1>
+                      <div class="post-dets">
+                        <div class="input-box">
+                          <label for="title">Caption</label>
+                          <input name="caption" type="text" placeholder="Enter any title">
+                        </div>
+                        <div class="input-box">
+                          <label for="desc">Descriptions</label>
+                          <textarea name="descriptions" id="" cols="30" rows="5" placeholder="Give some Descriptions"></textarea>
+                        </div>
+                        <div class="desclaimer">
+                          <h4>Desclaimer</h4>
+                          <h5>Dear @loginUsername</h5>
+                          <p>To maintain a professional image on Instagram, focus on quality over quantity. Share content relevant to your goals, engage thoughtfully with your audience, and avoid anything that could compromise your professional image. Remember, your online presence is an extension of your identity.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <div id="user-dets">
+                      <div class="box-t">
+                        <div class="user-dp">
+                            <img class="default" src="../images/uploads/profile/<%= myUserData.profileimage %>" alt="">
+                        </div>
+                        <h3><%= myUserData.username %></h3>
+                        <h2><%= myUserData.fullname %></h2>
+                        <div class="user-dets">
+                            <h4>0 Post</h4>
+                            <h4>0 Follower</h4>
+                            <h4>0 Following</h4>
+                        </div>
+                        <p><%= myUserData.userbio %></p>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </main>
+  <script>
+
+    document.getElementById('editButton').addEventListener('click',()=>{
+      document.getElementById('fileInput').click();
+      removeFile();
+      })
+    function previewFile() {
+    const fileInput = document.getElementById('fileInput');
+    const imagePreview = document.getElementById('imagePreview');
+    const videoPreview = document.getElementById('videoPreview')
+    const file = fileInput.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            const fileType = getFileType(file.type);
+
+            if (fileType === 'image') {
+                imagePreview.src = e.target.result;
+                imagePreview.type = fileType;
+                imagePreview.style.display = 'block';
+            } 
+            else if(fileType === 'video'){
+                videoPreview.src = e.target.result;
+                videoPreview.type = fileType;
+                videoPreview.style.display = 'block'
+            }
+            else {
+                console.error('Unsupported file type');
+                imagePreview.style.display = 'none';
+            }
+        };
+        reader.readAsDataURL(file);
+    } else {
+        imagePreview.style.display = 'none';
+        videoPreview.style.display = 'none';
+    }
+}
+
+function getFileType(fileType) {
+    if (fileType.startsWith('image/')) {
+        return 'image';
+    } else if (fileType.startsWith('video/')) {
+        return 'video';
+    } else {
+        return 'unsupported';
+    }
+}
+
+// Remove file 
+
+  function removeFile() {
+    const fileInput = document.getElementById('fileInput');
+    const imagePreview = document.getElementById('imagePreview');
+    const removeButton = document.getElementById('removeButton');
+    const videoPreview = document.getElementById('videoPreview')
+
+
+    fileInput.value = ''; // Clear the file input
+    imagePreview.style.display = 'none';
+    videoPreview.style.display = 'none';
+    
+}
+
+function getFileType(fileType) {
+    if (fileType.startsWith('image/')) {
+        return 'image';
+    } else if (fileType.startsWith('video/')) {
+        return 'video';
+    } else {
+        return 'unsupported';
+    }
+}
+
+  </script>
+</body>
+</html>
